@@ -1,5 +1,7 @@
 package ua.model;
 
+import ua.util.ValidationUtil;
+
 public class Customer {
     private String firstName;
     private String lastName;
@@ -17,25 +19,19 @@ public class Customer {
 
     public String getFirstName() { return firstName; }
     public void setFirstName(String firstName) {
-        if (firstName == null || firstName.trim().isEmpty()) {
-            throw new IllegalArgumentException("First name cannot be empty");
-        }
+        ValidationUtil.validateNotEmpty(firstName, "First name");
         this.firstName = firstName;
     }
 
     public String getLastName() { return lastName; }
     public void setLastName(String lastName) {
-        if (lastName == null || lastName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Last name cannot be empty");
-        }
+        ValidationUtil.validateNotEmpty(lastName, "Last name");
         this.lastName = lastName;
     }
 
     public String getEmail() { return email; }
     public void setEmail(String email) {
-        if (email == null || !email.contains("@")) {
-            throw new IllegalArgumentException("Invalid email");
-        }
+        ValidationUtil.validateEmail(email);
         this.email = email;
     }
 

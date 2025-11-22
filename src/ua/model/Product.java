@@ -1,5 +1,7 @@
 package ua.model;
 
+import ua.util.ValidationUtil;
+
 public class Product {
     private String name;
     private Category category;
@@ -19,33 +21,25 @@ public class Product {
 
     public String getName() { return name; }
     public void setName(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Product name cannot be empty");
-        }
+        ValidationUtil.validateNotEmpty(name, "Product name");
         this.name = name;
     }
 
     public Category getCategory() { return category; }
     public void setCategory(Category category) {
-        if (category == null) {
-            throw new IllegalArgumentException("Category cannot be null");
-        }
+        ValidationUtil.validateNotNull(category, "Category");
         this.category = category;
     }
 
     public double getPrice() { return price; }
     public void setPrice(double price) {
-        if (price < 0) {
-            throw new IllegalArgumentException("Price cannot be negative");
-        }
+        ValidationUtil.validateNotNegative(price, "Price");
         this.price = price;
     }
 
     public int getStock() { return stock; }
     public void setStock(int stock) {
-        if (stock < 0) {
-            throw new IllegalArgumentException("Stock cannot be negative");
-        }
+        ValidationUtil.validateNotNegative(stock, "Stock");
         this.stock = stock;
     }
 

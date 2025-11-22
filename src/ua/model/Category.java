@@ -1,5 +1,7 @@
 package ua.model;
 
+import ua.util.ValidationUtil;
+
 public class Category {
     private String name;
     private String description;
@@ -15,17 +17,13 @@ public class Category {
 
     public String getName() { return name; }
     public void setName(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Category name cannot be empty");
-        }
+        ValidationUtil.validateNotEmpty(name, "Category name");
         this.name = name;
     }
 
     public String getDescription() { return description; }
     public void setDescription(String description) {
-        if (description == null) {
-            throw new IllegalArgumentException("Description cannot be null");
-        }
+        ValidationUtil.validateNotNull(description, "Description");
         this.description = description;
     }
 

@@ -1,5 +1,7 @@
 package ua.model;
 
+import ua.util.ValidationUtil;
+
 import java.util.Date;
 import java.util.List;
 
@@ -20,25 +22,19 @@ public class Order {
 
     public Customer getCustomer() { return customer; }
     public void setCustomer(Customer customer) {
-        if (customer == null) {
-            throw new IllegalArgumentException("Customer cannot be null");
-        }
+        ValidationUtil.validateNotNull(customer, "Customer");
         this.customer = customer;
     }
 
     public List<Product> getProducts() { return products; }
     public void setProducts(List<Product> products) {
-        if (products == null || products.isEmpty()) {
-            throw new IllegalArgumentException("Products cannot be null or empty");
-        }
+        ValidationUtil.validateNotEmpty(products, "Products");
         this.products = products;
     }
 
     public Date getOrderDate() { return orderDate; }
     public void setOrderDate(Date orderDate) {
-        if (orderDate == null) {
-            throw new IllegalArgumentException("Order date cannot be null");
-        }
+        ValidationUtil.validateNotNull(orderDate, "Order date");
         this.orderDate = orderDate;
     }
 

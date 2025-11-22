@@ -1,5 +1,7 @@
 package ua.model;
 
+import ua.util.ValidationUtil;
+
 public class Supplier {
     private String name;
     private String contactInfo;
@@ -15,17 +17,13 @@ public class Supplier {
 
     public String getName() { return name; }
     public void setName(String name) {
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Supplier name cannot be empty");
-        }
+        ValidationUtil.validateNotEmpty(name, "Supplier name");
         this.name = name;
     }
 
     public String getContactInfo() { return contactInfo; }
     public void setContactInfo(String contactInfo) {
-        if (contactInfo == null || contactInfo.trim().isEmpty()) {
-            throw new IllegalArgumentException("Contact info cannot be empty");
-        }
+        ValidationUtil.validateNotEmpty(contactInfo, "Contact info");
         this.contactInfo = contactInfo;
     }
 
